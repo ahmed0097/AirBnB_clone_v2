@@ -114,22 +114,22 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, line):
-        try:
-            if not line:
-                raise SyntaxError()
-            my_list = line.split(" ")
 
-            kwargs = {}
-            for i in range(1, len(my_list)):
-                key, value = tuple(my_list[i].split("="))
-                if value[0] == '"':
-                    value = value.strip('"').replace("_", " ")
-                else:
-                    try:
-                        value = eval(value)
-                    except (SyntaxError, NameError):
-                        continue
-                kwargs[key] = value
+        if not line:
+            raise SyntaxError()
+        my_list = line.split(" ")
+
+        kwargs = {}
+        for i in range(1, len(my_list)):
+            key, value = tuple(my_list[i].split("="))
+            if value[0] == '"':
+                value = value.strip('"').replace("_", " ")
+            else:
+                try:
+                    value = eval(value)
+                except (SyntaxError, NameError):
+                    continue
+            kwargs[key] = value
 
     def help_create(self):
         """ Help information for the create method """
@@ -192,7 +192,7 @@ class HBNBCommand(cmd.Cmd):
         key = c_name + "." + c_id
 
         try:
-            del(storage.all()[key])
+            del (storage.all()[key])
             storage.save()
         except KeyError:
             print("** no instance found **")
