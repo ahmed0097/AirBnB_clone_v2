@@ -6,7 +6,8 @@ folder of the AirBnB Clone repo
 
 from datetime import datetime
 from fabric.api import local
-from os.path import isdir ,exists
+from os.path import isdir, exists
+
 
 def do_pack():
     """generates a tgz archive"""
